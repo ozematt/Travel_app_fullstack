@@ -1,0 +1,40 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: travel-app-backend
+    enviroment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/travelapp
+      - JWT_SECRET=my_password_very_very
+      - NODE_ENV=development
+      - BACKEND_PORT=5005
+    ports:
+      - "5005:5005"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+  frontend:
+    build:
+      context: ./frontend
+    container_name: travel-app-frontend
+    enviroment:
+      - NODE_ENV=development
+    ports:
+      - "5173:4173"
+    volumes:
+      - ./frontend:/app
+  db:
+    image: postgres:13-apline
+    container_name: postgres-db
+    enviroment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: travelapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
