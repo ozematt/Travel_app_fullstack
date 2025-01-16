@@ -1,10 +1,11 @@
-version: "3"
+version: "3.8"
+
 services:
   backend:
     build:
       context: ./backend
     container_name: travel-app-backend
-    enviroment:
+    environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/travelapp
       - JWT_SECRET=my_password_very_very
       - NODE_ENV=development
@@ -15,20 +16,25 @@ services:
       - db
     volumes:
       - ./backend:/app
+      - /app/node_modules # Zapewnia poprawne działanie zależności
+
   frontend:
     build:
       context: ./frontend
     container_name: travel-app-frontend
-    enviroment:
+    environment:
       - NODE_ENV=development
     ports:
-      - "5173:4173"
+      - "5173:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules # Zapewnia poprawne działanie zależności
+    command: npm run dev # Uruchamia serwer deweloperski Vite
+
   db:
-    image: postgres:13-apline
+    image: postgres:13-alpine
     container_name: postgres-db
-    enviroment:
+    environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: travelapp
@@ -36,5 +42,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
 volumes:
   postgres-data:

@@ -1,8 +1,21 @@
+### GET /
+GET http://localhost:5005/
+
+
 ### POST /AUTH/REGISTER
-POST http://localhost:5005/auth/register
+POST http://localhost:5005/api/auth/register
 Content-Type: application/json
 
 {
     "username": "matttest123@gmail.com",
     "password": "123456789"
 }
+
+### POST /AUTH/LOGIN
+POST http://localhost:5005/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "matttest123@gmail.com",
+    "password": "123456789"
+}`
