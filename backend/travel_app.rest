@@ -3,7 +3,7 @@ POST http://localhost:5005/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "matttest123@gmail.com",
+    "username": "mattte123@gmail.com",
     "password": "123456789"
 }
 
@@ -14,4 +14,4 @@ Content-Type: application/json
 {
     "username": "matttest123@gmail.com",
     "password": "123456789"
-}`
+}

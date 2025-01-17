@@ -3,6 +3,7 @@ const LogOut = () => {
   ////LOGIC
   const handleLogOut = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   ////UI
@@ -16,4 +17,4 @@ const LogOut = () => {
 };
 
 export default LogOut;
-``
+``;

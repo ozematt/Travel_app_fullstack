@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EmailSchema } from "../lib/types";
+// import { registerUser } from "../lib/authenticate";
 
 const Login = () => {
   //

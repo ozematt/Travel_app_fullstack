@@ -3,22 +3,23 @@ import { decoration } from "../assets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/userContext";
+// import { useUserContext } from "../context/userContext";
 import { SignUpSchema } from "../lib/types";
+import { authenticate } from "../lib/authenticate.js";
 
 const SignUp = () => {
   //
   ////DATA
   const navigate = useNavigate();
-  const { users } = useUserContext();
+  // const { users } = useUserContext();
 
   //react hook form
   const {
     register,
     handleSubmit,
     reset,
-    setError,
-    clearErrors,
+    // setError,
+    // clearErrors,
     formState: { errors },
   } = useForm<SignUpSchema>({
     resolver: zodResolver(SignUpSchema),
@@ -27,16 +28,8 @@ const SignUp = () => {
   ////LOGIC
   //handle form submit
   const onSubmit = ({ email, password }: SignUpSchema) => {
-    //checking if user exist
-    const userExist = users?.some((user) => user === email);
-    //add error and stop, if user already exist
-    if (userExist) {
-      setError("email", { type: "custom", message: "User already exist" });
-      return;
-    }
-    //if user does not exist
-    clearErrors(["email"]); //clear error
-    // addUser(email, password); // add user to database
+    authenticate("register", email, password);
+
     alert("User add and login successfully!"); //show alert
     navigate("/"); //navigate to home page
     localStorage.setItem("user", JSON.stringify(email)); //add user to local storage, so user email can be seen
