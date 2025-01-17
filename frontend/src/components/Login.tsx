@@ -1,24 +1,21 @@
 import { Button } from ".";
 import { decoration } from "../assets";
-// import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EmailSchema, type EmailSchemaT } from "../lib/types";
 import { authenticate } from "../lib/authenticate";
-// import { registerUser } from "../lib/authenticate";
+import { getUserName } from "../lib/helpers";
 
 const Login = () => {
   //
   ////DATA
   const navigate = useNavigate();
-  // const { users } = useUserContext();
 
   //react hook form
   const {
     register,
     handleSubmit,
-    // getValues,
     setError,
     clearErrors,
     formState: { errors },
@@ -30,10 +27,12 @@ const Login = () => {
     try {
       await authenticate("login", email, password);
 
-      //if user exist
       clearErrors(["email"]); //clear error
-      // localStorage.setItem("user", JSON.stringify(email)); //add user to localStorage
       alert("Hello again!"); //show alert
+      //add user to local storage, so user name can be seen
+      const user = getUserName(email);
+      localStorage.setItem("user", JSON.stringify(user));
+
       navigate("/"); //navigate to home page
     } catch (error: any) {
       setError("email", {
@@ -42,13 +41,6 @@ const Login = () => {
       });
       console.error("An error occurred:" + error.message);
     }
-
-    //check if user exist
-    // const userExist = users?.some((user) => user === email);
-    //if user does not exist, set error
-    // if (!userExist) {
-    //   setError("email", { type: "custom", message: "User does not exist" });
-    //   return;
   };
 
   ////UI
@@ -71,7 +63,7 @@ const Login = () => {
         />
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className=" justify-start max-xl:flex-wrap gap-5 w-full z-10 "
+          className=" justify-start space-y-5 w-full z-10 "
         >
           <input
             {...register("email")}
