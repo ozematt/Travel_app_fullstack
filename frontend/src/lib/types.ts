@@ -15,13 +15,14 @@ export const SignUpSchema = z
     path: ["confirmPassword"],
   });
 
-export type SignUpSchema = z.infer<typeof SignUpSchema>;
+export type SignUpSchemaT = z.infer<typeof SignUpSchema>;
 
 export const EmailSchema = z.object({
   email: z.string().email({ message: "Invalid email" }),
+  password: z.string().min(6, { message: "Must be at last 6 characters long" }),
 });
 
-export type EmailSchema = z.infer<typeof EmailSchema>;
+export type EmailSchemaT = z.infer<typeof EmailSchema>;
 
 export type ButtonProps = {
   children: string;

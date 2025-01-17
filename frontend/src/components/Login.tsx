@@ -1,44 +1,54 @@
 import { Button } from ".";
 import { decoration } from "../assets";
-import { useUserContext } from "../context/userContext";
+// import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EmailSchema } from "../lib/types";
+import { EmailSchema, type EmailSchemaT } from "../lib/types";
+import { authenticate } from "../lib/authenticate";
 // import { registerUser } from "../lib/authenticate";
 
 const Login = () => {
   //
   ////DATA
   const navigate = useNavigate();
-  const { users } = useUserContext();
+  // const { users } = useUserContext();
 
   //react hook form
   const {
     register,
-    getValues,
+    handleSubmit,
+    // getValues,
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm<EmailSchema>({ resolver: zodResolver(EmailSchema) });
+  } = useForm<EmailSchemaT>({ resolver: zodResolver(EmailSchema) });
 
   ////LOGIC
   //login handler
-  const handleLogin = () => {
-    //get entered value
-    const { email } = getValues();
-    //check if user exist
-    const userExist = users?.some((user) => user === email);
-    //if user does not exist, set error
-    if (!userExist) {
-      setError("email", { type: "custom", message: "User does not exist" });
-      return;
+  const onSubmit = async ({ email, password }: EmailSchemaT) => {
+    try {
+      await authenticate("login", email, password);
+
+      //if user exist
+      clearErrors(["email"]); //clear error
+      // localStorage.setItem("user", JSON.stringify(email)); //add user to localStorage
+      alert("Hello again!"); //show alert
+      navigate("/"); //navigate to home page
+    } catch (error: any) {
+      setError("email", {
+        type: "custom",
+        message: "User does not exist! Please try logging in.",
+      });
+      console.error("An error occurred:" + error.message);
     }
-    //if user exist
-    clearErrors(["email"]); //clear error
-    localStorage.setItem("user", JSON.stringify(email)); //add user to localStorage
-    alert("Hello again!"); //show alert
-    navigate("/"); //navigate to home page
+
+    //check if user exist
+    // const userExist = users?.some((user) => user === email);
+    //if user does not exist, set error
+    // if (!userExist) {
+    //   setError("email", { type: "custom", message: "User does not exist" });
+    //   return;
   };
 
   ////UI
@@ -59,21 +69,35 @@ const Login = () => {
           alt="decoration"
           className="absolute -rotate-90 scale-75  top-[7px] right-[-80px] dark:opacity-50 opacity-20 z-[1]"
         />
-        <div className="flex justify-start max-xl:flex-wrap gap-5 w-full z-10 ">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className=" justify-start max-xl:flex-wrap gap-5 w-full z-10 "
+        >
           <input
             {...register("email")}
             type="email"
             placeholder="Your email"
             className=" bg-email-icon bg-no-repeat bg-[center_left_1.5rem] focus:outline-none focus:ring-1 ring-black pl-[3.2rem]  w-full max-w-[500px] h-[70px] rounded-xl placeholder:pl-1"
           />
+          {errors.email && (
+            <p className="text-red-500 text-[14px] pl-1  leading-[5px]">
+              {errors.email.message}
+            </p>
+          )}
+          <input
+            {...register("password")}
+            type="password"
+            placeholder="Your password"
+            className=" bg-email-icon bg-no-repeat bg-[center_left_1.5rem] focus:outline-none focus:ring-1 ring-black pl-[3.2rem]  w-full max-w-[500px] h-[70px] rounded-xl placeholder:pl-1"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-[14px] pl-1  leading-[5px]">
+              {errors.password.message}
+            </p>
+          )}
 
-          <Button onClick={handleLogin}>Login</Button>
-        </div>
-        {errors.email && (
-          <p className="text-red-500 text-[14px] pl-1  leading-[5px]">
-            {errors.email.message}
-          </p>
-        )}
+          <Button type={"submit"}>Login</Button>
+        </form>
       </div>
     </section>
   );

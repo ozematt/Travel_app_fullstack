@@ -3,25 +3,14 @@ import { decoration } from "../assets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import { useUserContext } from "../context/userContext";
-import { SignUpSchema } from "../lib/types";
+import { SignUpSchema, type SignUpSchemaT } from "../lib/types";
 import { authenticate } from "../lib/authenticate.js";
+import { getUserName } from "../lib/helpers.js";
 
 const SignUp = () => {
   //
   ////DATA
   const navigate = useNavigate();
-
-  // let token = JSON.parse(localStorage.getItem("token") || "");
-  // console.log(token);
-
-  // const { users } = useUserContext();
-
-  const getUserName = (email: string) => {
-    const index = email.indexOf("@");
-
-    return (email.charAt(0).toUpperCase() + email.slice(1)).substring(0, index);
-  };
 
   //react hook form
   const {
@@ -31,24 +20,24 @@ const SignUp = () => {
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm<SignUpSchema>({
+  } = useForm<SignUpSchemaT>({
     resolver: zodResolver(SignUpSchema),
   });
 
   ////LOGIC
   //handle form submit
-  const onSubmit = async ({ email, password }: SignUpSchema) => {
+  const onSubmit = async ({ email, password }: SignUpSchemaT) => {
     try {
       await authenticate("register", email, password);
 
       clearErrors();
       alert("User add and login successfully!"); //show alert
-      navigate("/"); //navigate to home page
 
       //add user to local storage, so user name can be seen
       const user = getUserName(email);
       localStorage.setItem("user", JSON.stringify(user));
       reset(); //reset form fields
+      navigate("/"); //navigate to home page
     } catch (error: any) {
       setError("email", {
         type: "custom",
