@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN npx prisma generate
+
 EXPOSE 5005
 
-CMD ["node", "./src/server.js"]
+CMD npx prisma migrate dev --name init && node ./src/server.js
