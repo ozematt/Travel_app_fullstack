@@ -11,15 +11,25 @@ const SignUp = () => {
   //
   ////DATA
   const navigate = useNavigate();
+
+  // let token = JSON.parse(localStorage.getItem("token") || "");
+  // console.log(token);
+
   // const { users } = useUserContext();
+
+  const getUserName = (email: string) => {
+    const index = email.indexOf("@");
+
+    return (email.charAt(0).toUpperCase() + email.slice(1)).substring(0, index);
+  };
 
   //react hook form
   const {
     register,
     handleSubmit,
     reset,
-    // setError,
-    // clearErrors,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<SignUpSchema>({
     resolver: zodResolver(SignUpSchema),
@@ -27,13 +37,25 @@ const SignUp = () => {
 
   ////LOGIC
   //handle form submit
-  const onSubmit = ({ email, password }: SignUpSchema) => {
-    authenticate("register", email, password);
+  const onSubmit = async ({ email, password }: SignUpSchema) => {
+    try {
+      await authenticate("register", email, password);
 
-    alert("User add and login successfully!"); //show alert
-    navigate("/"); //navigate to home page
-    localStorage.setItem("user", JSON.stringify(email)); //add user to local storage, so user email can be seen
-    reset(); //reset form fields
+      clearErrors();
+      alert("User add and login successfully!"); //show alert
+      navigate("/"); //navigate to home page
+
+      //add user to local storage, so user name can be seen
+      const user = getUserName(email);
+      localStorage.setItem("user", JSON.stringify(user));
+      reset(); //reset form fields
+    } catch (error: any) {
+      setError("email", {
+        type: "custom",
+        message: "User already exist! Please try logging in.",
+      });
+      console.error("An error occurred:" + error.message);
+    }
   };
 
   ////UI

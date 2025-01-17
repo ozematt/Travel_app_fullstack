@@ -9,7 +9,6 @@ dotenv.config();
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  console.log("działa");
   const { username, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
 
@@ -27,7 +26,7 @@ router.post("/register", async (req, res) => {
     res.json({ token });
   } catch (error) {
     console.log(error.message);
-    res.send(503);
+    res.send(409);
   }
 });
 

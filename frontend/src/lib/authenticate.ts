@@ -7,7 +7,7 @@ export const authenticate = async (
 ) => {
   try {
     const response = await fetch(
-      AUTH_BASE + auth === "register" ? "/register" : "/login",
+      AUTH_BASE + (auth === "register" ? "/register" : "/login"),
       {
         method: "POST",
         headers: {
@@ -23,14 +23,16 @@ export const authenticate = async (
       throw new Error("Network response not ok");
     }
     const result = await response.json();
+    console.log(result);
 
     if (result.token) {
       localStorage.setItem("token", result.token);
     } else {
       throw Error("❌ Failed to authenticate...");
     }
-    console.log(result);
+    return result.token;
   } catch (error) {
     console.error("There has been a problem with fetch:", error);
+    throw error;
   }
 };
