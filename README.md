@@ -66,6 +66,13 @@ Aby zainstalować projekt, wykonaj poniższe kroki:
    ```sh
    cd Travel_app_fullstack
    ```
+3. **Konfiguracja Prisma:**
+   ```sh
+   cd backend
+   npx prisma generate
+   ```
+   Zatwierdż instalacje. (y) Enter
+   
 3. **Zbuduj i uruchom kontenery:**
    Upewnij się, że masz zainstalowany i włączony Docker. Następnie uruchom poniższą komendę.
    ```sh
