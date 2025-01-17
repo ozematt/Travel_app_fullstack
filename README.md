@@ -56,25 +56,25 @@ Projekt jest skonfigurowany do uruchamiania w kontenerach Docker, co umożliwia 
 
 Aby zainstalować projekt, wykonaj poniższe kroki:
 
+
 1. **Sklonuj repozytorium:**
+   Forkuj repozytorium na swoim koncie GitHub, a następnie sklonuj je lokalnie.
    ```sh
-   git clone https://github.com/ozematt/Travel-tailwindCSS-app.git
+   git clone https://github.com/ozematt/Travel_app_fullstack.git
    ```
 2. **Przejdź do katalogu projektu:**
    ```sh
-   cd Travel-tailwindCSS-app
+   cd Travel_app_fullstack
    ```
-3. **Zainstaluj zależności:**
-   Upewnij się, że masz zainstalowany Node.js i npm. Następnie uruchom poniższą komendę, aby zainstalować wszystkie zależności projektu.
+3. **Zbuduj i uruchom kontenery:**
+   Upewnij się, że masz zainstalowany i włączony Docker. Następnie uruchom poniższą komendę.
    ```sh
-   npm install
+   docker-compose up --build
    ```
 
-5. **Uruchom aplikacje:**
-   ```sh
-   npm run dev
-   ```
-   Aplikacja będzie dostępna pod adresem: http://localhost:5173/
+5. **Dostęp aplikacji:**
+   - **Frontend**: http://localhost:5173/
+   - **Backend**: http://localhost:5005/
 
 ## Podsumowanie
 
