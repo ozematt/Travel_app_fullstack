@@ -6,7 +6,7 @@ Witam w moim projekcie **Travel**! 🎒✨ Projekt powstał na podstawie darmowe
 
 - **Responsywność**: Aplikacja dostosowuje się do różnych rozmiarów ekranu (mobile-first design).
 - **Przełącznik motywu**: Możliwość zmiany między motywem jasnym a ciemnym.
-- **Zarządzanie użytkownikami**: Dodawanie i przechowywanie użytkowników za pomocą **Supabase**.
+- **Zarządzanie użytkownikami**: Dodawanie i przechowywanie użytkowników w bazie danych.
 - **Walidacja formularzy**: Formularze tworzone za pomocą **React Hook Form** i walidowane za pomocą **Zod**.
 - **Zarządzanie stanem**: Wykorzystanie **Context API** do zarządzania globalnym stanem aplikacji.
 
@@ -29,6 +29,8 @@ Witam w moim projekcie **Travel**! 🎒✨ Projekt powstał na podstawie darmowe
 
 Projekt został zbudowany z wykorzystaniem następujących technologii:
 
+### FRONTEND:
+
 - **Vite**: nowoczesne narzędzie do budowy aplikacji frontendowych.
 - **TailwindCSS**: nowoczesny framework CSS.
 - **TypeScript**: statyczne typowanie w JavaScript.
@@ -36,8 +38,19 @@ Projekt został zbudowany z wykorzystaniem następujących technologii:
 - **React Router**: narzędzie do zarządzania routingiem w aplikacji React.
 - **React Hook Form**: narzędzie do obsługi formularzy w React.
 - **Zod**: biblioteka do walidacji danych.
-- **Supabase**: baza danych i uwierzytelnianie w chmurze.
 - **Vitest** i **React Testing Library** – narzędzia do testów jednostkowych.
+
+### BACKEND:
+
+- **Node.js/Express.js**: platforma i framework używane do tworzenia serwera oraz logiki backendowej.
+- **Prisma ORM**: narzędzie do mapowania obiektowo-relacyjnego i zarządzania bazą danych.
+- **PostgreSQL**: relacyjna baza danych używana do przechowywania danych.
+- **JWT (JSON Web Tokens)**: technologia wykorzystywana do uwierzytelniania użytkowników.
+- **CORS**: middleware umożliwiający współdzielenie zasobów między różnymi domenami.
+- **Docker**: narzędzie do konteneryzacji, które umożliwia łatwe wdrażanie i zarządzanie aplikacją w odseparowanych środowiskach.
+
+Projekt jest skonfigurowany do uruchamiania w kontenerach Docker, co umożliwia łatwą współpracę między frontendem i backendem oraz zapewnia spójność środowiska wdrożeniowego.
+
 
 ### Instalacja
 
@@ -55,18 +68,6 @@ Aby zainstalować projekt, wykonaj poniższe kroki:
    Upewnij się, że masz zainstalowany Node.js i npm. Następnie uruchom poniższą komendę, aby zainstalować wszystkie zależności projektu.
    ```sh
    npm install
-   ```
-4. **Konfiguracja Supabase:**
-
-   - Utwórz konto i projekt na Supabase.
-   - Skopiuj klucze API i URL projektu z dashboardu Supabase.
-   - Utwórz plik .env w katalogu projektu i dodaj następujące zmienne środowiskowe (zawartość pliku):
-
-   ```sh
-
-    VITE_SUPABASE_URL=YOUR_SUPABASE_URL
-    VITE_SUPABASE_KEY=YOUR_SUPABASE_ANON_KEY
-
    ```
 
 5. **Uruchom aplikacje:**
