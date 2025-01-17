@@ -14,7 +14,7 @@ services:
       - db
     volumes:
       - ./backend:/app
-      - /app/node_modules # Zapewnia poprawne działanie zależności
+      - /app/node_modules # Ensures proper functioning of dependencies
 
   frontend:
     build:
@@ -26,8 +26,8 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-      - /app/node_modules # Zapewnia poprawne działanie zależności
-    command: npm run dev # Uruchamia serwer deweloperski Vite
+      - /app/node_modules # Ensures proper functioning of dependencies
+    command: npm run dev # Launches Vite development server
 
   db:
     image: postgres:13-alpine
