@@ -27,12 +27,12 @@ const Login = () => {
     try {
       await authenticate("login", email, password);
 
-      clearErrors(["email"]); //clear error
-      alert("Hello again!"); //show alert
+      clearErrors(["email"]);
+      alert("Hello again!");
+
       //add user to local storage, so user name can be seen
       const user = getUserName(email);
       localStorage.setItem("user", JSON.stringify(user));
-
       navigate("/"); //navigate to home page
     } catch (error: any) {
       setError("email", {
@@ -49,7 +49,7 @@ const Login = () => {
       <div className="flex flex-col justify-center shadow-customMorph items-start max-w-[800px] min-h-[450px] rounded-xl  max-sm:p-[40px] p-[80px] mx-auto gap-10 relative dark:bg-gray-900 dark:shadow-none">
         {" "}
         <h2 className="font-volkhov font-bold text-5xl my-8 z-10 dark:text-stone-200">
-          Enter your email:
+          Please login:
         </h2>
         <img
           src={decoration}
