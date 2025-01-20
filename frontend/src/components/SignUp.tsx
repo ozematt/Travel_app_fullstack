@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { SignUpSchema, type SignUpSchemaT } from "../lib/types";
 import { authenticate } from "../lib/authenticate.js";
 import { getUserName } from "../lib/helpers.js";
+import { useCallback } from "react";
 
 const SignUp = () => {
   //
@@ -26,26 +27,29 @@ const SignUp = () => {
 
   ////LOGIC
   //handle form submit
-  const onSubmit = async ({ email, password }: SignUpSchemaT) => {
-    try {
-      await authenticate("register", email, password);
+  const onSubmit = useCallback(
+    async ({ email, password }: SignUpSchemaT) => {
+      try {
+        await authenticate("register", email, password);
 
-      clearErrors();
-      alert("User add and login successfully!"); //show alert
+        clearErrors();
+        alert("User add and login successfully!");
 
-      //add user to local storage, so user name can be seen
-      const user = getUserName(email);
-      localStorage.setItem("user", JSON.stringify(user));
-      reset(); //reset form fields
-      navigate("/"); //navigate to home page
-    } catch (error: any) {
-      setError("email", {
-        type: "custom",
-        message: "User already exist! Please try logging in.",
-      });
-      console.error("An error occurred:" + error.message);
-    }
-  };
+        //add user to local storage, so user name can be seen
+        const user = getUserName(email);
+        localStorage.setItem("user", JSON.stringify(user));
+        reset(); //reset form fields
+        navigate("/"); //navigate to home page
+      } catch (error: any) {
+        setError("email", {
+          type: "custom",
+          message: "User already exist! Please try logging in.",
+        });
+        console.error("An error occurred:" + error.message);
+      }
+    },
+    [authenticate, clearErrors, getUserName, navigate, setError]
+  );
 
   ////UI
   return (
