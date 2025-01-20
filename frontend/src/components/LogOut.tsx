@@ -1,10 +1,12 @@
+import { useCallback } from "react";
+
 const LogOut = () => {
   //
   ////LOGIC
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-  };
+  }, []);
 
   ////UI
   return (

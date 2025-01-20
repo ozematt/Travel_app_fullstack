@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EmailSchema, type EmailSchemaT } from "../lib/types";
 import { authenticate } from "../lib/authenticate";
 import { getUserName } from "../lib/helpers";
+import { useCallback } from "react";
 
 const Login = () => {
   //
@@ -23,25 +24,28 @@ const Login = () => {
 
   ////LOGIC
   //login handler
-  const onSubmit = async ({ email, password }: EmailSchemaT) => {
-    try {
-      await authenticate("login", email, password);
+  const onSubmit = useCallback(
+    async ({ email, password }: EmailSchemaT) => {
+      try {
+        await authenticate("login", email, password);
 
-      clearErrors(["email"]);
-      alert("Hello again!");
+        clearErrors(["email"]);
+        alert("Hello again!");
 
-      //add user to local storage, so user name can be seen
-      const user = getUserName(email);
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/"); //navigate to home page
-    } catch (error: any) {
-      setError("email", {
-        type: "custom",
-        message: "User does not exist! Please try logging in.",
-      });
-      console.error("An error occurred:" + error.message);
-    }
-  };
+        //add user to local storage, so user name can be seen
+        const user = getUserName(email);
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/"); //navigate to home page
+      } catch (error: any) {
+        setError("email", {
+          type: "custom",
+          message: "User does not exist! Please try logging in.",
+        });
+        console.error("An error occurred:" + error.message);
+      }
+    },
+    [authenticate, clearErrors, getUserName, navigate, setError]
+  );
 
   ////UI
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "../constants";
 import {
   logoDark,
@@ -17,22 +17,19 @@ const Nav = () => {
   ////DATA
   const [openMenu, setOpenMenu] = useState(false);
   const [theme, setTheme] = useState(getStoredTheme());
-  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
   ////LOGIC
   //get logged user
   useEffect(() => {
-    //read user email from localStorage
     const user = localStorage.getItem("user");
-    if (user) {
-      const parsedUser = JSON.parse(user);
-      setUserEmail(parsedUser);
-    }
+    if (!user) return;
+    const parsedUser = JSON.parse(user);
+    setUsername(parsedUser);
   }, []);
 
   //get theme
   useEffect(() => {
-    //read them from local storage
     const localStorageTheme = JSON.parse(
       localStorage.getItem("theme") || "light"
     );
@@ -41,11 +38,10 @@ const Nav = () => {
     }
   }, []);
 
-  //action on theme switch button
-  const handleThemeToggle = (toggledTheme: string) => {
+  const handleThemeToggle = useCallback((toggledTheme: string) => {
     setTheme(toggledTheme);
     saveTheme(toggledTheme);
-  };
+  }, []);
 
   ////UI
   return (
@@ -69,11 +65,11 @@ const Nav = () => {
               <a href={link.href}>{link.label}</a>
             </li>
           ))}
-          {userEmail ? (
+          {username ? (
             <>
               <LogOut />
               <p className=" py-3 opacity-50 text-sm leading-7 pl-10">
-                Hello, {userEmail}!
+                Hello, {username}!
               </p>
             </>
           ) : (
