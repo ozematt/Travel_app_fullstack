@@ -46,6 +46,7 @@ Projekt został zbudowany z wykorzystaniem następujących technologii:
 - **Prisma ORM**: Narzędzie do mapowania obiektowo-relacyjnego i zarządzania bazą danych.
 - **PostgreSQL**: Relacyjna baza danych używana do przechowywania danych.
 - **JWT (JSON Web Tokens)**: Technologia wykorzystywana do uwierzytelniania użytkowników.
+- **bcryptjs**: Biblioteka służąca do bezpiecznego haszowania haseł użytkowników przed ich zapisaniem w bazie danych.
 - **CORS**: Middleware umożliwiający współdzielenie zasobów między różnymi domenami.
 - **Docker**: Narzędzie do konteneryzacji, które umożliwia łatwe wdrażanie i zarządzanie aplikacją w odseparowanych środowiskach.
 
