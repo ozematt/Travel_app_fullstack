@@ -31,23 +31,23 @@ Projekt został zbudowany z wykorzystaniem następujących technologii:
 
 ### FRONTEND:
 
-- **Vite**: nowoczesne narzędzie do budowy aplikacji frontendowych.
-- **TailwindCSS**: nowoczesny framework CSS.
-- **TypeScript**: statyczne typowanie w JavaScript.
-- **React**: biblioteka do budowy interfejsów użytkownika.
-- **React Router**: narzędzie do zarządzania routingiem w aplikacji React.
-- **React Hook Form**: narzędzie do obsługi formularzy w React.
-- **Zod**: biblioteka do walidacji danych.
-- **Vitest** i **React Testing Library** – narzędzia do testów jednostkowych.
+- **Vite**: Nowoczesne narzędzie do budowy aplikacji frontendowych.
+- **TailwindCSS**: Nowoczesny framework CSS.
+- **TypeScript**: Statyczne typowanie w JavaScript.
+- **React**: Biblioteka do budowy interfejsów użytkownika.
+- **React Router**: Narzędzie do zarządzania routingiem w aplikacji React.
+- **React Hook Form**: Narzędzie do obsługi formularzy w React.
+- **Zod**: Biblioteka do walidacji danych.
+- **Vitest** i **React Testing Library**: Narzędzia do testów jednostkowych.
 
 ### BACKEND:
 
-- **Node.js/Express.js**: platforma i framework używane do tworzenia serwera oraz logiki backendowej.
-- **Prisma ORM**: narzędzie do mapowania obiektowo-relacyjnego i zarządzania bazą danych.
-- **PostgreSQL**: relacyjna baza danych używana do przechowywania danych.
-- **JWT (JSON Web Tokens)**: technologia wykorzystywana do uwierzytelniania użytkowników.
-- **CORS**: middleware umożliwiający współdzielenie zasobów między różnymi domenami.
-- **Docker**: narzędzie do konteneryzacji, które umożliwia łatwe wdrażanie i zarządzanie aplikacją w odseparowanych środowiskach.
+- **Node.js/Express.js**: Platforma i framework używane do tworzenia serwera oraz logiki backendowej.
+- **Prisma ORM**: Narzędzie do mapowania obiektowo-relacyjnego i zarządzania bazą danych.
+- **PostgreSQL**: Relacyjna baza danych używana do przechowywania danych.
+- **JWT (JSON Web Tokens)**: Technologia wykorzystywana do uwierzytelniania użytkowników.
+- **CORS**: Middleware umożliwiający współdzielenie zasobów między różnymi domenami.
+- **Docker**: Narzędzie do konteneryzacji, które umożliwia łatwe wdrażanie i zarządzanie aplikacją w odseparowanych środowiskach.
 
 Projekt jest skonfigurowany do uruchamiania w kontenerach Docker, co umożliwia łatwą współpracę między frontendem i backendem oraz zapewnia spójność środowiska wdrożeniowego.
 
