@@ -1,83 +1,81 @@
 # Travel
 
-Witam w moim projekcie **Travel**! 🎒✨ Projekt powstał na podstawie darmowego layoutu z Figma: [Travel UI Kit](https://www.figma.com/community/file/993910904620677970). Celem projektu było przećwiczenie pracy z **TailwindCSS**, a także integracja z nowoczesnymi narzędziami frontendowymi i backendowymi.
+Welcome to my project **Travel**! 🎒✨ The project was created based on a free layout from Figma: [Travel UI Kit](https://www.figma.com/community/file/993910904620677970). The goal of this project was to practice working with **TailwindCSS** as well as integrating with modern frontend and backend tools.
 
-## Funkcjonalności
+## Features
 
-- **Responsywność**: Aplikacja dostosowuje się do różnych rozmiarów ekranu (mobile-first design).
-- **Przełącznik motywu**: Możliwość zmiany między motywem jasnym a ciemnym.
-- **Zarządzanie użytkownikami**: Dodawanie i przechowywanie użytkowników w bazie danych.
-- **Walidacja formularzy**: Formularze tworzone za pomocą **React Hook Form** i walidowane za pomocą **Zod**.
-- **Zarządzanie stanem**: Wykorzystanie **Context API** do zarządzania globalnym stanem aplikacji.
+- **Responsiveness**: The app adjusts to different screen sizes (mobile-first design).
+- **Theme Switcher**: The ability to switch between light and dark themes.
+- **User Management**: Adding and storing users in the database.
+- **Form Validation**: Forms are created using **React Hook Form** and validated with **Zod**.
+- **State Management**: **Context API** is used for global state management in the app.
 
-## Zrzuty ekranu
+## Screenshots
 
-### Widok główny
+### Main View
 
-![Widok główny - motyw jasny](./screenshots/Main_light.png)
-![Widok główny - motyw ciemny](./screenshots/Main_dark.png)
+![Main View - Light Theme](./screenshots/Main_light.png)
+![Main View - Dark Theme](./screenshots/Main_dark.png)
 
-### Widok główny - Mobilny
+### Main View - Mobile
 
-![Widok główny - mobilny](./screenshots/Mobile-view_both-Theme.png)
+![Main View - Mobile](./screenshots/Mobile-view_both-Theme.png)
 
-### Formularz rejestracji
+### Registration Form
 
-![Formularz rejestracji - motyw jasny](./screenshots/SignUp-bothTheme.png)
+![Registration Form - Light Theme](./screenshots/SignUp-bothTheme.png)
 
-## Technologie
+## Technology
 
-Projekt został zbudowany z wykorzystaniem następujących technologii:
+The project was built using the following technologies:
 
 ### FRONTEND:
 
-- **Vite**: Nowoczesne narzędzie do budowy aplikacji frontendowych.
-- **TailwindCSS**: Nowoczesny framework CSS.
-- **TypeScript**: Statyczne typowanie w JavaScript.
-- **React**: Biblioteka do budowy interfejsów użytkownika.
-- **React Router**: Narzędzie do zarządzania routingiem w aplikacji React.
-- **React Hook Form**: Narzędzie do obsługi formularzy w React.
-- **Zod**: Biblioteka do walidacji danych.
-- **Vitest** i **React Testing Library**: Narzędzia do testów jednostkowych.
+- **Vite**: A modern tool for building frontend applications.
+- **TailwindCSS**: A modern CSS framework.
+- **TypeScript**: Static typing for JavaScript.
+- **React**: A library for building user interfaces.
+- **React Router**: A tool for managing routing in a React application.
+- **React Hook Form**: A tool for handling forms in React.
+- **Zod**: A data validation library.
+- **Vitest** and **React Testing Library**: Tools for unit testing.
 
 ### BACKEND:
 
-- **Node.js/Express.js**: Platforma i framework używane do tworzenia serwera oraz logiki backendowej.
-- **Prisma ORM**: Narzędzie do mapowania obiektowo-relacyjnego i zarządzania bazą danych.
-- **PostgreSQL**: Relacyjna baza danych używana do przechowywania danych.
-- **JWT (JSON Web Tokens)**: Technologia wykorzystywana do uwierzytelniania użytkowników.
-- **bcryptjs**: Biblioteka służąca do bezpiecznego haszowania haseł użytkowników przed ich zapisaniem w bazie danych.
-- **CORS**: Middleware umożliwiający współdzielenie zasobów między różnymi domenami.
-- **Docker**: Narzędzie do konteneryzacji, które umożliwia łatwe wdrażanie i zarządzanie aplikacją w odseparowanych środowiskach.
+- **Node.js/Express.js**: Platform and framework used for creating the server and backend logic.
+- **Prisma ORM**: A tool for object-relational mapping and database management.
+- **PostgreSQL**: A relational database used for storing data.
+- **JWT (JSON Web Tokens)**: Technology used for user authentication.
+- **bcryptjs**: A library for securely hashing user passwords before saving them in the database.
+- **CORS**: Middleware enabling resource sharing between different domains.
+- **Docker**: A containerization tool that allows easy deployment and management of the app in isolated environments.
 
-Projekt jest skonfigurowany do uruchamiania w kontenerach Docker, co umożliwia łatwą współpracę między frontendem i backendem oraz zapewnia spójność środowiska wdrożeniowego.
+The project is configured to run in Docker containers, ensuring smooth collaboration between the frontend and backend, and maintaining consistency across deployment environments.
 
+### Installation
 
-### Instalacja
+To install the project, follow the steps below:
 
-Aby zainstalować projekt, wykonaj poniższe kroki:
-
-
-1. **Sklonuj repozytorium:**
-   Forkuj repozytorium na swoim koncie GitHub, a następnie sklonuj je lokalnie.
+1. **Clone the repository:**
+   Fork the repository to your GitHub account, then clone it locally.
    ```sh
    git clone https://github.com/ozematt/Travel_app_fullstack.git
    ```
-2. **Przejdź do katalogu projektu:**
+2. **Navigate to the project directory:**
    ```sh
    cd Travel_app_fullstack
    ```
    
-3. **Zbuduj i uruchom kontenery:**
-   Upewnij się, że masz zainstalowany i włączony Docker. Następnie uruchom poniższą komendę.
+3. **Build and run the containers:**
+   Ensure Docker is installed and running. Then, run the following command.
    ```sh
    docker-compose up --build
    ```
 
-5. **Dostęp aplikacji:**
+5. **Access the app:**
    - **Frontend**: http://localhost:5173/
    - **Backend**: http://localhost:5005/
 
-## Podsumowanie
+## Summary
 
-Projekt został stworzony w celu nauki i ćwiczenia pracy z nowoczesnymi technologiami frontendowymi i backendowymi. Dziękuję za odwiedzenie repozytorium! 😊
+This project was created for learning and practicing working with modern frontend and backend technologies. Thank you for visiting the repository! 😊
