@@ -6,9 +6,9 @@ import prisma from "../prismaClient.js";
 
 dotenv.config();
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.post("/register", async (req, res) => {
+authRouter.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 8);
 
@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -58,4 +58,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-export default router;
+export default authRouter;
