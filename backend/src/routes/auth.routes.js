@@ -1,59 +1,10 @@
 import express from "express";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import prisma from "../prismaClient.js";
-import { JWT_SECRET } from "../../config/env.js";
+import { login, register } from "../controllers/auth.controller.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 8);
+authRouter.post("/register", register);
 
-  try {
-    const user = await prisma.users.create({
-      data: {
-        username,
-        password: hashedPassword,
-      },
-    });
-
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, {
-      expiresIn: "24h",
-    });
-    res.json({ token });
-  } catch (error) {
-    console.log(error.message);
-    res.send(409);
-  }
-});
-
-authRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const user = await prisma.users.findUnique({
-      where: {
-        username: username,
-      },
-    });
-    if (!user) {
-      return res.status(404).send({ message: "User not found" });
-    }
-
-    const passwordIsValid = bcrypt.compareSync(password, user.password);
-    if (!passwordIsValid) {
-      return res.status(401).send({ message: "Invalid password" });
-    }
-
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, {
-      expiresIn: "24h",
-    });
-    res.json({ token });
-  } catch (error) {
-    console.log(error.message);
-    res.send(503);
-  }
-});
+authRouter.post("/login", login);
 
 export default authRouter;
